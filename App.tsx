@@ -1,13 +1,12 @@
-import { Router } from '@Navigation/index'
-import { NavigationContainer } from '@react-navigation/native'
 import Colors from '@theme/Colors'
 import { StatusBar } from 'expo-status-bar'
+import React from 'react'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Router />
+    <SafeAreaProvider>
       <StatusBar style='auto' backgroundColor={Colors.Secondary.Dark} hidden />
-    </NavigationContainer>
+    </SafeAreaProvider>
   )
 }
