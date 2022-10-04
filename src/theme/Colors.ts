@@ -1,13 +1,9 @@
 const Colors = {
   Primary: {
-    Dark: '#93050b',
-    Normal: '#f83a43',
-    Light: '#f95158'
-  },
-  Secondary: {
-    Dark: '#2c3641',
-    Normal: '#47525e',
-    Light: '#7e868e'
+    Background: '#DBD5B5',
+    Yellow: '#FCAB10',
+    Green: '#44AF69',
+    Red: '#F8333C'
   },
   Font: {
     Dark: '#000',

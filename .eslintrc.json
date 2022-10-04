@@ -3,6 +3,11 @@
         "prettier",
         "universe/native"
     ],
+    "settings": {
+        "import/ignore": [
+            "node_modules/react-native/index\\.js$"
+        ]
+    },
     "rules": {
         "prettier/prettier": "error"
     }

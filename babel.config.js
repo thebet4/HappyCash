@@ -8,17 +8,17 @@ module.exports = function (api) {
         {
           root: '.',
           alias: {
-            '@Navigation': './src/navigation',
+            '@navigation': './src/navigation',
             '@components': './src/components',
             '@containers': './src/containers',
             '@screens': './src/screens',
             '@theme': './src/theme',
             '@utils': './src/utils',
-            '@services': './src/services',
-            '@store': './src/store'
-          }
-        }
-      ]
-    ]
+            '@store': './src/store',
+            '@assets': './src/assets',
+          },
+        },
+      ],
+    ],
   }
 }
