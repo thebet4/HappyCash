@@ -1,21 +1,34 @@
-import Colors from '@theme/Colors'
+import { Card } from '@components/molecules'
+import { CardProps } from '@components/molecules/Card'
+import { CardList } from '@components/organisms'
 import React from 'react'
 
-import {
-  AmountText,
-  CardContainer,
-  CardImage,
-  CardInfos,
-  CardTitle,
-  ChoiceButton,
-  ChoiceButtonsContainer,
-  Container,
-  GameContent,
-  HappinessText,
-  HeaderContainer,
-} from './styles'
+import { AmountText, Container, GameContent, HappinessText, HeaderContainer } from './styles'
 
 const GameScreen = () => {
+  const DATA_BASE = [
+    {
+      happiness: 10,
+      image: require('../../../assets/MockCard.png'),
+      price: 120,
+      title: 'Comprar uma bicicleta',
+    },
+    {
+      happiness: 5,
+      image: require('../../../assets/MockCard.png'),
+      price: 80,
+      title: 'Comprar uma pizza',
+    },
+  ]
+  const [cards, setCards] = React.useState<CardProps[]>([
+    {
+      happiness: 10,
+      image: require('../../../assets/MockCard.png'),
+      price: 120,
+      title: 'Comprar uma bicicleta',
+    },
+  ])
+
   const getHappinessIcon = (happinessLevel: number) => {
     if (happinessLevel >= 75) {
       return '75'
@@ -28,6 +41,10 @@ const GameScreen = () => {
     }
   }
 
+  const getNextCard = () => {
+    setCards([...cards, DATA_BASE[1]])
+  }
+
   return (
     <Container>
       <HeaderContainer>
@@ -35,23 +52,7 @@ const GameScreen = () => {
         <HappinessText>100%</HappinessText>
       </HeaderContainer>
 
-      <GameContent horizontal>
-        <CardContainer>
-          <CardImage source={require('../../../assets/MockCard.png')} />
-          <CardTitle>Comprar uma bicicleta</CardTitle>
-          <CardInfos>Felicidade: +24%</CardInfos>
-          <CardInfos>Dinheiro: - R$150,00</CardInfos>
-
-          <ChoiceButtonsContainer>
-            <ChoiceButton />
-            <ChoiceButton
-              style={{
-                backgroundColor: Colors.Primary.Green,
-              }}
-            />
-          </ChoiceButtonsContainer>
-        </CardContainer>
-      </GameContent>
+      <CardList cards={cards} getNextCard={getNextCard} />
     </Container>
   )
 }
