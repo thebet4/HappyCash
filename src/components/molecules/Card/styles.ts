@@ -18,6 +18,7 @@ export const Container = styled.View`
   border-radius: 24px;
   border-width: 1px;
   align-self: center;
+  background-color: ${Colors.Primary.Background};
 `
 export const CardImage = styled.Image`
   width: 100%;

@@ -1,58 +1,56 @@
-import { Card } from '@components/molecules'
-import { CardProps } from '@components/molecules/Card'
-import { CardList } from '@components/organisms'
-import React from 'react'
+import Card, { CardProps } from '@components/molecules/Card'
+import { Swipeable, SwipeHandler } from '@components/organisms/Swipeable/Swipeable'
+import React, { useCallback, useRef, useState } from 'react'
+import { Text, TouchableOpacity, View } from 'react-native'
+import { useSharedValue } from 'react-native-reanimated'
 
-import { AmountText, Container, GameContent, HappinessText, HeaderContainer } from './styles'
+import { AmountText, Container, HappinessText, HeaderContainer } from './styles'
 
 const GameScreen = () => {
-  const DATA_BASE = [
+  const [cards, setCards] = useState([
     {
       happiness: 10,
       image: require('../../../assets/MockCard.png'),
       price: 120,
-      title: 'Comprar uma bicicleta',
+      title: 'Comprar uma 1',
+      id: 0,
     },
     {
       happiness: 5,
       image: require('../../../assets/MockCard.png'),
       price: 80,
-      title: 'Comprar uma pizza',
-    },
-  ]
-  const [cards, setCards] = React.useState<CardProps[]>([
-    {
-      happiness: 10,
-      image: require('../../../assets/MockCard.png'),
-      price: 120,
-      title: 'Comprar uma bicicleta',
+      title: 'Comprar uma 2',
+      id: 1,
     },
   ])
-
-  const getHappinessIcon = (happinessLevel: number) => {
-    if (happinessLevel >= 75) {
-      return '75'
-    } else if (happinessLevel >= 50) {
-      return '50'
-    } else if (happinessLevel >= 25) {
-      return '25'
-    } else {
-      return '0'
-    }
-  }
-
-  const getNextCard = () => {
-    setCards([...cards, DATA_BASE[1]])
-  }
+  const [happiness, setHappiness] = useState(100)
+  const [amount, setAmount] = useState('R$ 100,00')
+  const scale = useSharedValue(0)
+  const onSwipe = useCallback(() => {
+    setCards(cards.slice(0, cards.length - 1))
+  }, [cards])
+  const topCard = useRef<SwipeHandler>(null)
 
   return (
     <Container>
-      <HeaderContainer>
-        <AmountText>R$100,00</AmountText>
-        <HappinessText>100%</HappinessText>
-      </HeaderContainer>
-
-      <CardList cards={cards} getNextCard={getNextCard} />
+      {/* <HeaderContainer>
+        <AmountText>{amount}</AmountText>
+        <HappinessText>{happiness}%</HappinessText>
+      </HeaderContainer> */}
+      {cards.map((card, index) => {
+        const onTop = index === cards.length - 1
+        const ref = onTop ? topCard : null
+        return (
+          <Swipeable
+            ref={ref}
+            key={card.id}
+            card={card}
+            scale={scale}
+            onSwipe={onSwipe}
+            onTop={onTop}
+          />
+        )
+      })}
     </Container>
   )
 }
