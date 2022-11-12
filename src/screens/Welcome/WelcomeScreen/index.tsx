@@ -24,6 +24,7 @@ const WelcomeScreen = ({
         style={{
           backgroundColor: Colors.Primary.Yellow,
         }}
+        onPress={() => navigation.navigate('TutorialScreen')}
       />
     </Container>
   )

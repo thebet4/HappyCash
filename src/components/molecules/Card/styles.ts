@@ -3,25 +3,20 @@ import { RegularText } from '@theme/Fonts'
 import { Dimensions } from 'react-native'
 import styled from 'styled-components/native'
 
-const SCREEN_WIDTH = Dimensions.get('screen').width
-
-export const Wrapper = styled.View`
-  width: ${SCREEN_WIDTH}px;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`
+const { height } = Dimensions.get('window')
 
 export const Container = styled.View`
-  margin-top: 32px;
   width: 80%;
+  height: ${height * 0.6}px;
   border-radius: 24px;
   border-width: 1px;
   align-self: center;
   background-color: ${Colors.Primary.Background};
+  margin-top: 48px;
 `
 export const CardImage = styled.Image`
-  width: 100%;
+  width: 100%
+  background-color: red;
   height: 300px;
   border-top-left-radius: 24px;
   border-top-right-radius: 24px;
@@ -31,6 +26,7 @@ export const CardTitle = styled(RegularText)`
   line-height: 29.05px;
   text-align: center;
   padding-top: 22px;
+  padding-bottom: 22px;
   border-top-width: 1px;
   width: 100%;
   color: ${Colors.Base.Darkest};

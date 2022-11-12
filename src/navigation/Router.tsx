@@ -1,5 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { GameScreen } from '@screens/Game'
+import ModalScreen from '@screens/Modal'
+import { Swiping } from '@screens/Swiping'
+import TutorialScreen from '@screens/Tutorial'
 import { WelcomeScreen } from '@screens/Welcome'
 import React from 'react'
 
@@ -16,7 +18,15 @@ const Router = () => {
       }}
     >
       <Stack.Screen name='WelcomeScreen' component={WelcomeScreen} />
-      <Stack.Screen name='GameScreen' component={GameScreen} />
+      <Stack.Screen name='GameScreen' component={Swiping} />
+      <Stack.Screen name='TutorialScreen' component={TutorialScreen} />
+      <Stack.Group
+        screenOptions={{
+          animation: 'slide_from_bottom',
+        }}
+      >
+        <Stack.Screen name='ModalScreen' component={ModalScreen} />
+      </Stack.Group>
     </Stack.Navigator>
   )
 }
